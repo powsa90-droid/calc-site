@@ -1,0 +1,16 @@
+{
+  "name": "생활계산기",
+  "tagline": "급여·대출·부동산·생활 계산을 공식 기준으로 정확하게",
+  "domain": "https://saenghwalcalc.pages.dev",
+  "email": "powsa90@gmail.com",
+  "updated": "2026-11-22",
+  "sister": {"name": "생활노트", "url": "https://saenghwal-note.com"},
+  "categories": [
+    {"id": "salary", "name": "급여·근로", "desc": "연봉 실수령액, 퇴직금, 주휴수당, 실업급여처럼 일하면서 받는 돈을 계산합니다."},
+    {"id": "finance", "name": "대출·금융", "desc": "대출 상환액과 이자, 예금·적금 만기 수령액을 계산합니다."},
+    {"id": "realestate", "name": "부동산·주거", "desc": "전월세 전환, 보증금과 월세 비교처럼 집과 관련된 계산을 합니다."},
+    {"id": "life", "name": "생활", "desc": "만 나이, 날짜 계산처럼 일상에서 자주 쓰는 계산을 합니다."}
+  ],
+  "AD": "",
+  "HEAD_EXTRA": ""
+}
