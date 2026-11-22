@@ -1,0 +1,15 @@
+<form id="calcForm" autocomplete="off">
+<div class="row">
+  <div class="fld"><label>현재 주택 소유</label>
+    <div class="seg"><label><input type="radio" name="own" value="0" checked><span>무주택</span></label><label><input type="radio" name="own" value="1"><span>주택 있음</span></label></div></div>
+  <div class="fld"><label for="birth">생년월일</label><div class="in"><input id="birth" type="date" value="1990-05-15"></div></div>
+  <div class="fld"><label for="marry">혼인신고일 (미혼이면 비움)</label><div class="in"><input id="marry" type="date"></div></div>
+  <div class="fld"><label for="lost">무주택이 된 날 (해당 시)</label><div class="in"><input id="lost" type="date"></div>
+    <div class="hint">집을 판 적이 있으면 처분일, 없으면 비워 둡니다.</div></div>
+  <div class="fld"><label for="fam">부양가족 수 (본인 제외)</label><div class="in"><input id="fam" inputmode="numeric" value="2"><span class="u">명</span></div>
+    <div class="hint">배우자, 직계존속(3년 이상 같은 등본), 미혼 자녀</div></div>
+  <div class="fld"><label for="acc">청약통장 가입일</label><div class="in"><input id="acc" type="date" value="2015-03-10"></div></div>
+</div>
+<div class="btns"><button class="btn" type="submit">청약 가점 계산하기</button><button class="btn ghost" type="reset" data-reset>초기화</button></div>
+</form>
+<div class="result" id="res"></div>

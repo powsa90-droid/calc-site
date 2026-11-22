@@ -1,0 +1,11 @@
+<form id="calcForm" autocomplete="off">
+<div class="row">
+  <div class="fld" style="grid-column:1/-1"><label>변환 방향</label>
+    <div class="seg"><label><input type="radio" name="dir" value="h2m" checked><span>시급 → 월급</span></label><label><input type="radio" name="dir" value="m2h"><span>월급 → 시급</span></label></div></div>
+  <div class="fld"><label for="amt" id="amtL">시급</label><div class="in"><input id="amt" inputmode="numeric" data-money value="10,320"><span class="u">원</span></div></div>
+  <div class="fld"><label for="hours">1주 소정근로시간</label><div class="in"><input id="hours" inputmode="decimal" value="40"><span class="u">시간</span></div>
+    <div class="hint">주 5일 8시간이면 40시간입니다.</div></div>
+</div>
+<div class="btns"><button class="btn" type="submit">변환하기</button><button class="btn ghost" type="reset" data-reset>초기화</button></div>
+</form>
+<div class="result" id="res"></div>

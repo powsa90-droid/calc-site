@@ -1,0 +1,13 @@
+<form id="calcForm" autocomplete="off">
+<div class="row">
+  <div class="fld"><label for="price">취득가액 (매매가)</label><div class="in"><input id="price" inputmode="numeric" data-money value="750,000,000"><span class="u">원</span></div></div>
+  <div class="fld"><label for="cnt">취득 후 주택 수 (세대 기준)</label><select id="cnt">
+    <option value="1" selected>1주택 (또는 일시적 2주택)</option><option value="2">2주택</option><option value="3">3주택</option><option value="4">4주택 이상</option></select></div>
+  <div class="fld"><label>조정대상지역</label>
+    <div class="seg"><label><input type="radio" name="adj" value="0" checked><span>아님</span></label><label><input type="radio" name="adj" value="1"><span>조정대상지역</span></label></div></div>
+  <div class="fld"><label>전용면적</label>
+    <div class="seg"><label><input type="radio" name="area" value="0" checked><span>85㎡ 이하</span></label><label><input type="radio" name="area" value="1"><span>85㎡ 초과</span></label></div></div>
+</div>
+<div class="btns"><button class="btn" type="submit">취득세 계산하기</button><button class="btn ghost" type="reset" data-reset>초기화</button></div>
+</form>
+<div class="result" id="res"></div>

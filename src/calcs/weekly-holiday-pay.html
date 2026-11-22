@@ -1,0 +1,10 @@
+<form id="calcForm" autocomplete="off">
+<div class="row">
+  <div class="fld"><label for="wage">시급</label><div class="in"><input id="wage" inputmode="numeric" data-money value="10,320"><span class="u">원</span></div>
+    <div class="hint">2026년 최저시급은 10,320원입니다.</div></div>
+  <div class="fld"><label for="hours">1주 소정근로시간</label><div class="in"><input id="hours" inputmode="decimal" value="20"><span class="u">시간</span></div>
+    <div class="hint">계약서에 정한 한 주 근무시간입니다. 연장근로는 빼고 넣습니다.</div></div>
+</div>
+<div class="btns"><button class="btn" type="submit">주휴수당 계산하기</button><button class="btn ghost" type="reset" data-reset>초기화</button></div>
+</form>
+<div class="result" id="res"></div>

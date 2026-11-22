@@ -1,0 +1,17 @@
+<form id="calcForm" autocomplete="off">
+<div class="row">
+  <div class="fld" style="grid-column:1/-1"><label>상품 종류</label>
+    <div class="seg"><label><input type="radio" name="kind" value="sav" checked><span>적금 (매달 납입)</span></label><label><input type="radio" name="kind" value="dep"><span>예금 (한 번에 예치)</span></label></div></div>
+  <div class="fld"><label for="amt" id="amtLabel">월 납입액</label><div class="in"><input id="amt" inputmode="numeric" data-money value="500,000"><span class="u">원</span></div></div>
+  <div class="fld"><label for="rate">연 이자율</label><div class="in"><input id="rate" inputmode="decimal" value="3.5"><span class="u">%</span></div></div>
+  <div class="fld"><label for="months">기간</label><div class="in"><input id="months" inputmode="numeric" value="12"><span class="u">개월</span></div></div>
+  <div class="fld"><label>이자 계산</label>
+    <div class="seg"><label><input type="radio" name="comp" value="simple" checked><span>단리</span></label><label><input type="radio" name="comp" value="monthly"><span>월복리</span></label></div></div>
+  <div class="fld" style="grid-column:1/-1"><label>이자 과세</label>
+    <div class="seg"><label><input type="radio" name="tax" value="15.4" checked><span>일반과세 15.4%</span></label><label><input type="radio" name="tax" value="0"><span>비과세</span></label><label><input type="radio" name="tax" value="custom"><span>세율 직접 입력</span></label></div></div>
+  <div class="fld"><label for="taxc">직접 입력 세율</label><div class="in"><input id="taxc" inputmode="decimal" value="1.4"><span class="u">%</span></div>
+    <div class="hint">상호금융 예탁금처럼 저율 과세 상품은 가입한 곳에 안내된 세율을 넣으세요.</div></div>
+</div>
+<div class="btns"><button class="btn" type="submit">만기 수령액 계산하기</button><button class="btn ghost" type="reset" data-reset>초기화</button></div>
+</form>
+<div class="result" id="res"></div>

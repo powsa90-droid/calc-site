@@ -1,0 +1,16 @@
+<form id="calcForm" autocomplete="off">
+<div class="row">
+  <div class="fld"><label for="wage">통상시급</label><div class="in"><input id="wage" inputmode="numeric" data-money value="12,000"><span class="u">원</span></div>
+    <div class="hint">월급제는 월 통상임금 ÷ 209시간</div></div>
+  <div class="fld"><label>사업장 규모</label>
+    <div class="seg"><label><input type="radio" name="size" value="5" checked><span>5인 이상</span></label><label><input type="radio" name="size" value="4"><span>5인 미만</span></label></div></div>
+  <div class="fld"><label for="ot">연장근로 시간</label><div class="in"><input id="ot" inputmode="decimal" value="10"><span class="u">시간</span></div>
+    <div class="hint">하루 8시간·주 40시간을 넘긴 시간</div></div>
+  <div class="fld"><label for="night">야간근로 시간</label><div class="in"><input id="night" inputmode="decimal" value="4"><span class="u">시간</span></div>
+    <div class="hint">밤 10시~오전 6시에 일한 시간 (연장·휴일과 겹쳐도 모두 넣기)</div></div>
+  <div class="fld"><label for="hol8">휴일근로 (8시간 이내)</label><div class="in"><input id="hol8" inputmode="decimal" value="8"><span class="u">시간</span></div></div>
+  <div class="fld"><label for="holx">휴일근로 (8시간 초과분)</label><div class="in"><input id="holx" inputmode="decimal" value="0"><span class="u">시간</span></div></div>
+</div>
+<div class="btns"><button class="btn" type="submit">수당 계산하기</button><button class="btn ghost" type="reset" data-reset>초기화</button></div>
+</form>
+<div class="result" id="res"></div>

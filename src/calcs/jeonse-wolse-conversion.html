@@ -1,0 +1,13 @@
+<form id="calcForm" autocomplete="off">
+<div class="row">
+  <div class="fld" style="grid-column:1/-1"><label>계산 방향</label>
+    <div class="seg"><label><input type="radio" name="dir" value="j2w" checked><span>전세 → 월세</span></label><label><input type="radio" name="dir" value="w2j"><span>월세 → 전세</span></label></div></div>
+  <div class="fld"><label for="dep" id="l1">현재 전세 보증금</label><div class="in"><input id="dep" inputmode="numeric" data-money value="300,000,000"><span class="u">원</span></div></div>
+  <div class="fld"><label for="newdep">바꾼 뒤 보증금</label><div class="in"><input id="newdep" inputmode="numeric" data-money value="100,000,000"><span class="u">원</span></div></div>
+  <div class="fld" id="rentBox" style="display:none"><label for="rent">현재 월세</label><div class="in"><input id="rent" inputmode="numeric" data-money value="800,000"><span class="u">원</span></div></div>
+  <div class="fld"><label for="rate">전환율</label><div class="in"><input id="rate" inputmode="decimal" value="5.0"><span class="u">%</span></div>
+    <div class="hint">법정 상한 = 한국은행 기준금리 3.00% + 2% = 5.0% (2026.11.22 기준)</div></div>
+</div>
+<div class="btns"><button class="btn" type="submit">전환 금액 계산하기</button><button class="btn ghost" type="reset" data-reset>초기화</button></div>
+</form>
+<div class="result" id="res"></div>

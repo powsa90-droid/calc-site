@@ -1,0 +1,14 @@
+<form id="calcForm" autocomplete="off">
+<div class="row">
+  <div class="fld" style="grid-column:1/-1"><label>거래 종류</label>
+    <div class="seg"><label><input type="radio" name="kind" value="sale" checked><span>매매</span></label><label><input type="radio" name="kind" value="jeonse"><span>전세</span></label><label><input type="radio" name="kind" value="wolse"><span>월세</span></label></div></div>
+  <div class="fld" style="grid-column:1/-1"><label>매물 종류</label>
+    <div class="seg"><label><input type="radio" name="prop" value="house" checked><span>주택·아파트</span></label><label><input type="radio" name="prop" value="officetel"><span>주거용 오피스텔 (85㎡ 이하)</span></label><label><input type="radio" name="prop" value="etc"><span>상가·토지 등</span></label></div></div>
+  <div class="fld"><label for="amt" id="amtL">매매가</label><div class="in"><input id="amt" inputmode="numeric" data-money value="500,000,000"><span class="u">원</span></div></div>
+  <div class="fld" id="rentBox" style="display:none"><label for="rent">월세</label><div class="in"><input id="rent" inputmode="numeric" data-money value="700,000"><span class="u">원</span></div></div>
+  <div class="fld"><label>부가가치세</label>
+    <div class="seg"><label><input type="radio" name="vat" value="0.1" checked><span>일반과세 10%</span></label><label><input type="radio" name="vat" value="0.04"><span>간이과세 4%</span></label><label><input type="radio" name="vat" value="0"><span>별도 없음</span></label></div></div>
+</div>
+<div class="btns"><button class="btn" type="submit">중개수수료 계산하기</button><button class="btn ghost" type="reset" data-reset>초기화</button></div>
+</form>
+<div class="result" id="res"></div>

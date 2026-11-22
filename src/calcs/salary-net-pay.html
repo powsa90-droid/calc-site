@@ -1,0 +1,18 @@
+<form id="calcForm" autocomplete="off">
+<div class="row">
+  <div class="fld"><label>급여 기준</label>
+    <div class="seg"><label><input type="radio" name="basis" value="year" checked><span>연봉</span></label><label><input type="radio" name="basis" value="month"><span>월급</span></label></div>
+  </div>
+  <div class="fld"><label for="pay">세전 금액</label><div class="in"><input id="pay" inputmode="numeric" data-money value="40,000,000"><span class="u">원</span></div>
+    <div class="hint">퇴직금이 연봉에 포함돼 있으면 13으로 나눈 금액이 월급입니다. 아래 '퇴직금 포함'을 고르세요.</div></div>
+  <div class="fld"><label for="nontax">월 비과세액</label><div class="in"><input id="nontax" inputmode="numeric" data-money value="200,000"><span class="u">원</span></div>
+    <div class="hint">식대는 월 20만 원까지 비과세입니다.</div></div>
+  <div class="fld"><label for="fam">부양가족 수 (본인 포함)</label><div class="in"><input id="fam" inputmode="numeric" value="1"><span class="u">명</span></div></div>
+  <div class="fld"><label for="kids">8~20세 자녀 수</label><div class="in"><input id="kids" inputmode="numeric" value="0"><span class="u">명</span></div></div>
+  <div class="fld"><label>퇴직금</label>
+    <div class="seg"><label><input type="radio" name="sev" value="0" checked><span>별도</span></label><label><input type="radio" name="sev" value="1"><span>연봉에 포함</span></label></div>
+  </div>
+</div>
+<div class="btns"><button class="btn" type="submit">실수령액 계산하기</button><button class="btn ghost" type="reset" data-reset>초기화</button></div>
+</form>
+<div class="result" id="res"></div>

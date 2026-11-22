@@ -1,0 +1,14 @@
+<form id="calcForm" autocomplete="off">
+<div class="row">
+  <div class="fld"><label for="amt">대출 금액</label><div class="in"><input id="amt" inputmode="numeric" data-money value="100,000,000"><span class="u">원</span></div></div>
+  <div class="fld"><label for="rate">연 이자율</label><div class="in"><input id="rate" inputmode="decimal" value="4.5"><span class="u">%</span></div></div>
+  <div class="fld"><label for="months">대출 기간</label><div class="in"><input id="months" inputmode="numeric" value="360"><span class="u">개월</span></div>
+    <div class="hint">30년 = 360개월, 10년 = 120개월</div></div>
+  <div class="fld"><label for="grace">거치 기간</label><div class="in"><input id="grace" inputmode="numeric" value="0"><span class="u">개월</span></div>
+    <div class="hint">이자만 내는 기간 (대출 기간에 포함)</div></div>
+  <div class="fld" style="grid-column:1/-1"><label>상환 방식</label>
+    <div class="seg"><label><input type="radio" name="type" value="epi" checked><span>원리금균등</span></label><label><input type="radio" name="type" value="ep"><span>원금균등</span></label><label><input type="radio" name="type" value="bullet"><span>만기일시</span></label></div></div>
+</div>
+<div class="btns"><button class="btn" type="submit">상환액 계산하기</button><button class="btn ghost" type="reset" data-reset>초기화</button></div>
+</form>
+<div class="result" id="res"></div>
