@@ -1,7 +1,7 @@
 {
   "name": "생활계산기",
   "tagline": "급여·대출·부동산·생활 계산을 공식 기준으로 정확하게",
-  "domain": "https://saenghwalcalc.pages.dev",
+  "domain": "https://calc.saenghwal-note.com",
   "email": "powsa90@gmail.com",
   "updated": "2026-11-22",
   "sister": {"name": "생활노트", "url": "https://saenghwal-note.com"},
