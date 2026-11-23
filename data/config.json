@@ -1,9 +1,9 @@
 {
-  "name": "생활계산기",
-  "tagline": "급여·대출·부동산·생활 계산을 공식 기준으로 정확하게",
-  "domain": "https://calc.saenghwal-note.com",
+  "name": "하우머치노트",
+  "tagline": "이거 얼마 들어? 생활 속 비용을 직접 계산한 숫자로 정리합니다",
+  "domain": "https://howmuchnote.com",
   "email": "powsa90@gmail.com",
-  "updated": "2026-11-22",
+  "updated": "2026-11-23",
   "sister": {
     "name": "생활노트",
     "url": "https://saenghwal-note.com"
@@ -31,5 +31,33 @@
     }
   ],
   "AD": "",
-  "HEAD_EXTRA": "<meta name=\"naver-site-verification\" content=\"d7aee9cd8cac1785a271253cc0f9f8b034f82bd5\" />"
+  "HEAD_EXTRA": "",
+  "name_en": "howmuchnote",
+  "blog_categories": [
+    {
+      "id": "family",
+      "name": "결혼·가족",
+      "desc": "결혼, 출산, 육아, 장례처럼 가족 행사에 드는 비용을 정리합니다."
+    },
+    {
+      "id": "home",
+      "name": "집·이사",
+      "desc": "이사, 전월세, 매매, 관리비처럼 집에 드는 비용을 정리합니다."
+    },
+    {
+      "id": "money",
+      "name": "월급·세금",
+      "desc": "월급, 퇴직금, 세금, 대출처럼 돈이 들어오고 나가는 계산을 정리합니다."
+    },
+    {
+      "id": "living",
+      "name": "생활·소비",
+      "desc": "가전 전기세, 차량 유지비, 구독료처럼 매달 나가는 생활비를 정리합니다."
+    },
+    {
+      "id": "study",
+      "name": "교육·자격증",
+      "desc": "학비, 학원비, 자격증 응시료처럼 배우는 데 드는 비용을 정리합니다."
+    }
+  ]
 }
