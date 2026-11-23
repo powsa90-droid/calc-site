@@ -77,6 +77,7 @@ def page(title, desc, path, body, extra_head='', active='', og_type='website', o
 {nav(active)}
 {body}
 {footer()}
+<script>try{{var hit=JSON.stringify({{p:location.pathname,r:document.referrer}});if(!(navigator.sendBeacon&&navigator.sendBeacon('/api/hit',hit)))fetch('/api/hit',{{method:'POST',body:hit,keepalive:true}});}}catch(e){{}}</script>
 </body></html>'''
 
 
@@ -366,9 +367,19 @@ def build_feeds(calcs, posts):
     items = ''.join(f'<item><title>{esc(t)}</title><link>{D}/{s_}/</link><guid>{D}/{s_}/</guid><description>{esc(d_)}</description><pubDate>{pd}</pubDate></item>' for t, s_, d_, pd in feed)
     open(os.path.join(SITE, 'rss.xml'), 'w', encoding='utf-8').write(
         f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>{esc(cfg["name"])}</title><link>{D}/</link><description>{esc(cfg["tagline"])}</description><language>ko</language>{items}</channel></rss>')
-    open(os.path.join(SITE, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nSitemap: {D}/sitemap.xml\n')
+    open(os.path.join(SITE, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/\nSitemap: {D}/sitemap.xml\n')
     if cfg.get('ADS_TXT'):
         open(os.path.join(SITE, 'ads.txt'), 'w').write(cfg['ADS_TXT'] + '\n')
+
+
+def build_admin_titles(calcs, posts):
+    # 관리자 통계 화면에서 주소를 제목으로 바꿔 보여 주기 위한 목록(/admin/ 아래라 비밀번호로 보호됨)
+    rows = [{'u': f"/{p['slug']}/", 't': p['title'], 'dt': p['date']} for p in posts]
+    rows += [{'u': f"/{c['slug']}/", 't': '계산기: ' + c['name']} for c in calcs]
+    rows += [{'u': f"/{c['id']}/", 't': '카테고리: ' + c['name']} for c in cfg['categories'] + cfg.get('blog_categories', [])]
+    rows += [{'u': u, 't': t} for u, t in [('/', '메인 화면'), ('/calculators/', '계산기 모음'), ('/about/', '소개'), ('/contact/', '문의'), ('/privacy/', '개인정보처리방침')]]
+    os.makedirs(os.path.join(SITE, 'admin'), exist_ok=True)
+    json.dump(rows, open(os.path.join(SITE, 'admin', 'titles.json'), 'w'), ensure_ascii=False)
 
 
 def copy_assets():
@@ -378,6 +389,8 @@ def copy_assets():
     os.makedirs(os.path.join(dst, 'calc'), exist_ok=True)
     for f in glob.glob(os.path.join(ROOT, 'src/calcs/*.js')):
         shutil.copy(f, os.path.join(dst, 'calc', os.path.basename(f)))
+    if os.path.isdir(os.path.join(ROOT, 'src/admin')):
+        shutil.copytree(os.path.join(ROOT, 'src/admin'), os.path.join(SITE, 'admin'), dirs_exist_ok=True)
     if os.path.isdir(os.path.join(ROOT, 'src/images')):
         shutil.copytree(os.path.join(ROOT, 'src/images'), os.path.join(SITE, 'images'), dirs_exist_ok=True)
 
@@ -403,4 +416,5 @@ if __name__ == '__main__':
     build_blog_cats(posts)
     build_static()
     build_feeds(calcs, posts)
+    build_admin_titles(calcs, posts)
     print(f'built {len(calcs)} calculators, {len(posts)} posts')
