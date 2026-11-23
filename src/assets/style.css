@@ -88,3 +88,37 @@ h1{font-size:28px;line-height:1.35;margin:4px 0 8px}
 .foot-links a{margin-right:16px;color:var(--ink)}
 .foot-note{margin:8px 0 0}
 @media(max-width:600px){.sched th,.sched td{padding:6px 5px;font-size:12px}h1{font-size:24px}.hero h1{font-size:26px}.calc{padding:16px}.big b{font-size:26px}.guide{font-size:16.5px}.top-in{gap:10px}.logo{font-size:17px}}
+/* ---- 비용 글 ---- */
+.nav-calc{border:1px solid var(--line)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.pcard{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden;color:var(--ink);background:#fff;transition:border-color .15s,box-shadow .15s}
+.pcard:hover{text-decoration:none;border-color:var(--pri2);box-shadow:0 4px 14px rgba(31,78,121,.08)}
+.pc-img{aspect-ratio:16/9;background:var(--soft);display:grid;place-items:center;overflow:hidden}
+.pc-img img{width:100%;height:100%;object-fit:contain}
+.pc-noimg{font-size:40px;color:var(--pri2);opacity:.5}
+.pc-body{display:flex;flex-direction:column;gap:4px;padding:14px 16px 16px}
+.pc-body strong{font-size:16px;line-height:1.45}
+h3.sub{font-size:16px;margin:22px 0 10px;color:var(--sub)}h3.sub a{color:var(--sub)}
+.post h1{font-size:30px}
+.post-meta{font-size:13.5px;color:var(--sub);margin:0 0 18px}
+.post-hero{width:100%;max-width:480px;display:block;margin:0 auto 22px;border-radius:12px}
+.summary{border:2px solid var(--pri2);border-radius:12px;padding:16px 18px;margin:0 0 26px;background:var(--soft)}
+.summary strong{display:block;margin-bottom:8px;color:var(--pri)}
+.summary table{width:100%;border-collapse:collapse;font-size:15.5px}
+.summary th{text-align:left;font-weight:600;padding:6px 8px 6px 0;color:#344050;width:42%;vertical-align:top}
+.summary td{padding:6px 0;font-weight:700;color:var(--ink)}
+.summary tr+tr th,.summary tr+tr td{border-top:1px dashed #c9d6e5}
+.guide .em{background:#fffbea;border-left:4px solid #f5b100;padding:12px 16px;border-radius:6px;font-weight:600}
+.exp{background:#f3f8f4;border:1px solid #cfe5d6;border-radius:12px;padding:14px 18px;margin:6px 0 18px}
+.exp-tag{display:inline-block;font-size:12.5px;font-weight:700;color:var(--acc);background:#e0f2ea;border-radius:20px;padding:2px 10px;margin-bottom:6px}
+.exp p{margin:0}
+.calc-link{display:flex;align-items:center;gap:14px;border:1px solid var(--pri2);border-radius:12px;padding:14px 16px;margin:8px 0 22px;color:var(--ink);background:#fff}
+.calc-link:hover{text-decoration:none;background:var(--soft)}
+.cl-ico{font-size:26px}
+.calc-link>span:nth-child(2){flex:1;display:flex;flex-direction:column}
+.cl-go{font-weight:700;color:var(--pri2);white-space:nowrap;font-size:14.5px}
+.pimg{margin:10px 0 22px;text-align:center}.pimg img{max-width:100%;border-radius:10px;border:1px solid var(--line)}
+.pimg figcaption{font-size:13px;color:var(--sub);margin-top:6px}
+.sources{margin-top:34px;font-size:14.5px}.sources h2{font-size:18px}
+.sources ul{padding-left:18px;margin:6px 0}.upd-note{color:var(--sub);font-size:13px}
+@media(max-width:600px){.post h1{font-size:24px}.calc-link{flex-wrap:wrap}.cl-go{width:100%}}
