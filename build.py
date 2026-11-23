@@ -69,6 +69,8 @@ def page(title, desc, path, body, extra_head='', active='', og_type='website', o
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><meta name="theme-color" content="#0d223a">
 <link rel="alternate" type="application/rss+xml" title="{esc(cfg["name"])}" href="{D}/rss.xml">
 {extra_head}{cfg["HEAD_EXTRA"]}
 </head><body>
@@ -372,6 +374,7 @@ def build_feeds(calcs, posts):
 def copy_assets():
     dst = os.path.join(SITE, 'assets')
     shutil.copytree(os.path.join(ROOT, 'src/assets'), dst, dirs_exist_ok=True)
+    shutil.copy(os.path.join(ROOT, 'src/assets/favicon.ico'), os.path.join(SITE, 'favicon.ico'))
     os.makedirs(os.path.join(dst, 'calc'), exist_ok=True)
     for f in glob.glob(os.path.join(ROOT, 'src/calcs/*.js')):
         shutil.copy(f, os.path.join(dst, 'calc', os.path.basename(f)))
