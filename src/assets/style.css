@@ -8,7 +8,7 @@ a{color:var(--pri2);text-decoration:none}a:hover{text-decoration:underline}
 .top-in{display:flex;align-items:center;gap:20px;height:58px}
 .logo{font-weight:800;font-size:19px;color:var(--ink);display:flex;align-items:center;gap:8px;white-space:nowrap}
 .logo:hover{text-decoration:none}
-.logo-mark{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:7px;background:var(--pri);color:#fff;font-size:18px;line-height:1}
+.logo-mark{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:7px;background:#0d223a;color:#ffd233;font-size:18px;font-weight:900;line-height:1}
 .cats{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
 .cats::-webkit-scrollbar{display:none}
 .cats a{color:var(--sub);font-size:15px;padding:6px 10px;border-radius:7px;white-space:nowrap}
@@ -101,7 +101,7 @@ h1{font-size:28px;line-height:1.35;margin:4px 0 8px}
 h3.sub{font-size:16px;margin:22px 0 10px;color:var(--sub)}h3.sub a{color:var(--sub)}
 .post h1{font-size:30px}
 .post-meta{font-size:13.5px;color:var(--sub);margin:0 0 18px}
-.post-hero{width:100%;max-width:480px;display:block;margin:0 auto 22px;border-radius:12px}
+.post-hero{width:100%;max-width:720px;display:block;margin:0 auto 22px;border-radius:12px}
 .summary{border:2px solid var(--pri2);border-radius:12px;padding:16px 18px;margin:0 0 26px;background:var(--soft)}
 .summary strong{display:block;margin-bottom:8px;color:var(--pri)}
 .summary table{width:100%;border-collapse:collapse;font-size:15.5px}
