@@ -216,8 +216,16 @@ def post_checks(p):
     kw = intro.count(p['kw'])
     tables = sum(1 for x in body if x[0] == 'TABLE')
     srcs = len(p.get('sources', []))
-    ok = n_total >= 1700 and n_intro >= 500 and kw >= 4 and tables >= 1 and srcs >= 1
-    print(f'POST {p["slug"]:34s} total {n_total:5d} intro {n_intro:4d} kw_in_intro {kw} tables {tables} sources {srcs} {"OK" if ok else "FAIL"}')
+    faqs = len(p.get('faq', []))
+    raw = ' '.join(str(x[1]) for x in body)
+    links = len(re.findall(r'href="/[a-z0-9-]+/"', raw)) + sum(1 for x in body if x[0] == 'CALC')
+    ok = n_total >= 1700 and n_intro >= 500 and kw >= 4 and tables >= 1 and srcs >= 1 and faqs >= 5 and links >= 1
+    rep = {w: raw.count(w) for w in REPEAT_WORDS if raw.count(w) > 2}
+    warn = f'  (반복 표현 {rep})' if rep else ''
+    print(f'POST {p["slug"]:34s} total {n_total:5d} intro {n_intro:4d} kw_in_intro {kw} tables {tables} sources {srcs} faq {faqs} inlinks {links} {"OK" if ok else "FAIL"}{warn}')
+
+
+REPEAT_WORDS = ['정리했습니다', '편이 정확합니다', '편이 낫습니다', '것이 좋습니다', '중요합니다', '확인하는 것이']
 
 
 def build_post(p, posts, calcs_by_slug):
@@ -247,7 +255,7 @@ def build_post(p, posts, calcs_by_slug):
     ld = [{"@context": "https://schema.org", "@type": "Article", "headline": p['title'], "description": p['desc'],
            "datePublished": p['date'], "dateModified": p.get('updated', p['date']),
            "image": D + p['img_url'] if p['img_url'] else f'{D}/assets/og.png',
-           "author": {"@type": "Organization", "name": cfg['name'], "url": D + '/'},
+           "author": {"@type": "Person", "name": OP['name'], "url": D + '/about/'},
            "publisher": {"@type": "Organization", "name": cfg['name']}, "mainEntityOfPage": D + path},
           {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
               {"@type": "ListItem", "position": 1, "name": cfg['name'], "item": D + '/'},
@@ -259,7 +267,7 @@ def build_post(p, posts, calcs_by_slug):
     head = ''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
     upd = f' · 업데이트 {p["updated"]}' if p.get('updated') and p['updated'] != p['date'] else ''
     body = (f'<main class="wrap post">\n<p class="crumb"><a href="/">홈</a> › <a href="/{cat["id"]}/">{esc(cat["name"])}</a></p>\n'
-            f'<h1>{esc(p["title"])}</h1>\n<p class="post-meta">{p["date"]} 작성{upd} · {esc(cfg["name"])}</p>\n{hero}\n{summ}\n'
+            f'<h1>{esc(p["title"])}</h1>\n<p class="post-meta">{p["date"]} 작성{upd} · 글 <a href="/about/">{esc(OP["name"])}</a></p>\n{hero}\n{summ}\n'
             f'<article class="guide">\n{render_post_body(p["body"], calcs_by_slug)}\n</article>\n{srcs}\n{ad(3)}\n{faq_html}\n{rel_html}\n</main>')
     os.makedirs(os.path.join(SITE, p['slug']), exist_ok=True)
     og = D + p['img_url'] if p['img_url'] else None
@@ -318,9 +326,16 @@ def build_cats(calcs):
             page(f'{cat["name"]} 계산기 | {cfg["name"]}', cat['desc'], f'/{cat["id"]}/', body, active=cat['id']))
 
 
+OP = cfg.get('operator', {"name": cfg['name'], "role": cfg['name'] + " 운영자"})
 ABOUT = (f'<p>{cfg["name"]}은 "이거 얼마 들어?"라는 질문에 숫자로 답하는 생활 비용 사이트입니다. 결혼과 이사, 장례 같은 큰 행사부터 가전 전기세나 자격증 응시료 같은 작은 지출까지, 실제로 얼마가 드는지를 공식 자료와 직접 계산한 숫자로 정리합니다. 연봉 실수령액, 퇴직금, 대출 이자, 취득세처럼 자주 필요한 계산은 무료 계산기로 바로 해 볼 수 있습니다.</p>'
-         '<p>글에 나오는 금액과 기준은 정부 기관, 공공기관, 업체의 공식 안내 같은 확인 가능한 자료를 바탕으로 하며, 글마다 참고한 자료와 확인한 날짜를 적어 둡니다. 계산기는 고용노동부, 국민연금공단, 국민건강보험공단, 국세청, 한국은행, 국가법령정보센터가 공개한 법령과 고시를 기준으로 만들었습니다. 요율이나 가격이 바뀌면 다시 확인해 고칩니다.</p>'
-         f'<p>사이트의 비용과 계산 결과는 참고용 정보입니다. 지역, 업체, 개인 상황에 따라 실제 금액은 달라질 수 있으니 중요한 결정 전에는 해당 기관이나 업체에 확인하시기 바랍니다. 생활 정보는 자매 사이트 <a href="{cfg["sister"]["url"]}">{cfg["sister"]["name"]}</a>에서도 볼 수 있습니다.</p>')
+         f'<h2>운영자 소개</h2>'
+         f'<p>안녕하세요, {cfg["name"]}를 운영하는 {esc(OP["name"])}입니다. 일상생활 속에서 한 번쯤 꼭 필요해지는 정보들을 직접 알아보고, 보기 쉽게 잘 정리해서 여러분께 전해 드리고 싶어 이 사이트를 운영하고 있습니다. 돈이 드는 일일수록 "그래서 우리 집은 얼마가 드는지"가 궁금한데, 막상 찾아보면 숫자가 흩어져 있거나 기준이 적혀 있지 않은 경우가 많았습니다. 그래서 숫자 하나를 쓰더라도 어디서 확인했는지, 어떤 조건으로 계산했는지를 함께 적는 것을 원칙으로 삼고 있습니다.</p>'
+         '<h2>글을 쓰는 원칙</h2>'
+         '<p>첫째, 금액과 기준은 정부 기관, 공공기관, 업체의 공식 안내처럼 확인 가능한 자료에서만 가져옵니다. 다른 사람의 블로그에 적힌 숫자를 그대로 옮기지 않으며, 확인하지 못한 숫자는 쓰지 않습니다.</p>'
+         '<p>둘째, 글마다 직접 계산한 표를 넣습니다. 인원별, 평형별, 근무일수별처럼 조건을 바꿔 가며 직접 계산해 보고, 표 위에 어떤 기준으로 계산했는지를 적어 둡니다. 계산기는 고용노동부, 국민연금공단, 국민건강보험공단, 국세청, 한국은행, 국가법령정보센터가 공개한 법령과 고시를 기준으로 만들었습니다.</p>'
+         '<p>셋째, 글 아래에는 참고한 자료와 확인한 날짜를 적고, 요율이나 가격이 바뀌면 다시 확인해 고칩니다. 잘못된 숫자를 발견하시면 알려 주시는 대로 바로 확인하겠습니다.</p>'
+         f'<h2>연락처</h2><p>오류 제보나 다뤄 줬으면 하는 비용 주제가 있으시면 <a href="mailto:{cfg["email"]}">{cfg["email"]}</a>로 보내 주세요. <a href="/contact/">문의 페이지</a>에서도 안내하고 있습니다.</p>'
+         f'<p>사이트의 비용과 계산 결과는 참고용 정보입니다. 지역, 업체, 개인 상황에 따라 실제 금액은 달라질 수 있으니 중요한 결정 전에는 해당 기관이나 업체에 확인하시기 바랍니다. 이사·행정 절차처럼 방법을 다룬 생활 정보는 자매 사이트 <a href="{cfg["sister"]["url"]}">{cfg["sister"]["name"]}</a>에서 볼 수 있습니다.</p>')
 CONTACT = ('<p>잘못된 금액이나 계산 오류 제보, 다뤄 줬으면 하는 비용 주제, 제휴 문의는 아래 이메일로 보내 주세요. 오류 제보는 해당 글 주소와 고칠 내용을 함께 적어 주시면 더 빨리 확인할 수 있습니다.</p>'
            f'<p class="mail"><a href="mailto:{cfg["email"]}">{cfg["email"]}</a></p>'
            '<p>보내 주신 내용은 확인 후 순서대로 답변드립니다. 개인의 급여·세금 상담은 법적 효력이 있는 답변을 드리기 어려우므로 고용노동부(국번 없이 1350), 국세청(국번 없이 126) 같은 공식 상담 창구를 이용해 주세요.</p>')

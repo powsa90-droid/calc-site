@@ -3,6 +3,10 @@
   "tagline": "이거 얼마 들어? 생활 속 비용을 직접 계산한 숫자로 정리합니다",
   "domain": "https://howmuchnote.com",
   "email": "byj2081316@gmail.com",
+  "operator": {
+    "name": "머치노트",
+    "role": "하우머치노트 운영자"
+  },
   "updated": "2026-11-23",
   "sister": {
     "name": "생활노트",
