@@ -361,12 +361,19 @@ def build_feeds(calcs, posts):
     def rfc(d):
         y, m, dd = map(int, d.split('-'))
         return date(y, m, dd).strftime('%a, %d %b %Y 09:00:00 +0900')
+    def rss_img(slug):
+        # 핀터레스트 RSS 자동 핀용 대표 이미지 (없으면 빈 문자열)
+        f = os.path.join(ROOT, f'src/images/{slug}/01.jpg')
+        if not os.path.exists(f):
+            return ''
+        u = f'{D}/images/{slug}/01.jpg'
+        return f'<enclosure url="{u}" length="{os.path.getsize(f)}" type="image/jpeg"/><media:content url="{u}" medium="image" type="image/jpeg"/>'
     feed = [(p['title'], p['slug'], p['desc'], rfc(p['date'])) for p in posts[:20]]
     if len(feed) < 20:
         feed += [(c['title'], c['slug'], c['desc'], 'Sun, 22 Nov 2026 12:00:00 +0900') for c in calcs[:20 - len(feed)]]
-    items = ''.join(f'<item><title>{esc(t)}</title><link>{D}/{s_}/</link><guid>{D}/{s_}/</guid><description>{esc(d_)}</description><pubDate>{pd}</pubDate></item>' for t, s_, d_, pd in feed)
+    items = ''.join(f'<item><title>{esc(t)}</title><link>{D}/{s_}/</link><guid>{D}/{s_}/</guid><description>{esc(d_)}</description><pubDate>{pd}</pubDate>{rss_img(s_)}</item>' for t, s_, d_, pd in feed)
     open(os.path.join(SITE, 'rss.xml'), 'w', encoding='utf-8').write(
-        f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>{esc(cfg["name"])}</title><link>{D}/</link><description>{esc(cfg["tagline"])}</description><language>ko</language>{items}</channel></rss>')
+        f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title>{esc(cfg["name"])}</title><link>{D}/</link><description>{esc(cfg["tagline"])}</description><language>ko</language>{items}</channel></rss>')
     open(os.path.join(SITE, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/\nSitemap: {D}/sitemap.xml\n')
     if cfg.get('ADS_TXT'):
         open(os.path.join(SITE, 'ads.txt'), 'w').write(cfg['ADS_TXT'] + '\n')
