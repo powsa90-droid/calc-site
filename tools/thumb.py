@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 ap = argparse.ArgumentParser()
 ap.add_argument('out'); ap.add_argument('--cat', default='money')
+ap.add_argument('--icon', default='', help='그림만 다른 카테고리 것으로 바꿀 때(예: 장례 글은 living)')
 ap.add_argument('--hook', default=''); ap.add_argument('--kw', required=True); ap.add_argument('--num', default='')
 a = ap.parse_args()
 
@@ -29,9 +30,10 @@ d = ImageDraw.Draw(im)
 
 # ---- 카테고리 아이콘 (중심 250,360) ----
 cx, cy = 250, 360
+ICON = a.icon or a.cat
 def won(x, y, s, col=NAVY):
     d.text((x, y), '₩', font=F(s), fill=col, anchor='mm')
-if a.cat == 'money':  # 동전 더미 + 앞 동전
+if ICON == 'money':  # 동전 더미 + 앞 동전
     for i in range(5):
         y = cy + 95 - i * 34
         d.ellipse([cx - 165, y - 30, cx - 15, y + 30], fill=(214, 160, 20), outline=NAVY, width=5)
@@ -39,7 +41,7 @@ if a.cat == 'money':  # 동전 더미 + 앞 동전
     d.ellipse([cx - 20, cy - 70, cx + 170, cy + 120], fill=YEL, outline=NAVY, width=7)
     d.ellipse([cx + 2, cy - 48, cx + 148, cy + 98], outline=(214, 160, 20), width=6)
     won(cx + 75, cy + 22, 110)
-elif a.cat == 'family':  # 케이크
+elif ICON == 'family':  # 케이크
     d.rounded_rectangle([cx - 150, cy + 10, cx + 150, cy + 140], 18, fill=(255, 236, 214), outline=NAVY, width=6)
     d.rounded_rectangle([cx - 110, cy - 90, cx + 110, cy + 16], 16, fill=(255, 196, 214), outline=NAVY, width=6)
     for x in range(cx - 130, cx + 131, 52):
@@ -47,14 +49,14 @@ elif a.cat == 'family':  # 케이크
     d.rounded_rectangle([cx - 10, cy - 170, cx + 10, cy - 90], 6, fill=WHITE, outline=NAVY, width=4)
     d.ellipse([cx - 22, cy - 230, cx + 22, cy - 168], fill=YEL, outline=NAVY, width=4)
     d.text((cx, cy + 80), '1', font=F(70), fill=(230, 90, 120), anchor='mm')
-elif a.cat == 'home':  # 집
+elif ICON == 'home':  # 집
     d.polygon([(cx - 175, cy - 10), (cx, cy - 175), (cx + 175, cy - 10)], fill=(232, 96, 76), outline=NAVY)
     d.rectangle([cx - 135, cy - 15, cx + 135, cy + 150], fill=(255, 243, 222), outline=NAVY, width=6)
     d.rectangle([cx - 30, cy + 50, cx + 30, cy + 150], fill=(150, 98, 60), outline=NAVY, width=5)
     for x in (cx - 105, cx + 50):
         d.rectangle([x, cy + 20, x + 55, cy + 72], fill=(160, 210, 255), outline=NAVY, width=5)
     d.ellipse([cx + 70, cy - 150, cx + 190, cy - 30], fill=YEL, outline=NAVY, width=6); won(cx + 130, cy - 88, 70)
-elif a.cat == 'study':  # 책 + 학사모
+elif ICON == 'study':  # 책 + 학사모
     d.polygon([(cx - 170, cy - 40), (cx, cy - 10), (cx, cy + 150), (cx - 170, cy + 120)], fill=WHITE, outline=NAVY)
     d.polygon([(cx + 170, cy - 40), (cx, cy - 10), (cx, cy + 150), (cx + 170, cy + 120)], fill=(226, 236, 250), outline=NAVY)
     for i in range(4):
