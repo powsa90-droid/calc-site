@@ -35,7 +35,7 @@
     }
   ],
   "AD": "",
-  "HEAD_EXTRA": "<meta name=\"naver-site-verification\" content=\"9372588af8ea4c3378bd137db16d7f29e2550924\" /><meta name=\"p:domain_verify\" content=\"a77cabe2ac59b50ce2cbe1a590c44730\"/>",
+  "HEAD_EXTRA": "<script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8595603453269921\" crossorigin=\"anonymous\"></script><meta name=\"naver-site-verification\" content=\"9372588af8ea4c3378bd137db16d7f29e2550924\" /><meta name=\"p:domain_verify\" content=\"a77cabe2ac59b50ce2cbe1a590c44730\"/>",
   "name_en": "howmuchnote",
   "blog_categories": [
     {
@@ -63,5 +63,6 @@
       "name": "교육·자격증",
       "desc": "학비, 학원비, 자격증 응시료처럼 배우는 데 드는 비용을 정리합니다."
     }
-  ]
+  ],
+  "ADS_TXT": "google.com, pub-8595603453269921, DIRECT, f08c47fec0942fa0"
 }
